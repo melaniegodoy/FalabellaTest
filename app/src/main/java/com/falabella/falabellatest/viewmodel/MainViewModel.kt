@@ -3,7 +3,7 @@ package com.falabella.falabellatest.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.falabella.falabellatest.util.Constants.KEY
+import com.falabella.falabellatest.BuildConfig
 import com.falabella.falabellatest.util.Constants.PASS
 import com.falabella.falabellatest.util.Constants.USER
 import com.falabella.falabellatest.util.EncryptionHelper
@@ -15,7 +15,7 @@ class MainViewModel(val context: Context) : ViewModel() {
     private val encrypt = EncryptionHelper()
 
     fun saveUserData(){
-        prefsHelper.saveLogin(encrypt.encrypt(USER, KEY), encrypt.encrypt(PASS, KEY))
+        prefsHelper.saveLogin(encrypt.encrypt(USER, BuildConfig.ACCESS_TOKEN), encrypt.encrypt(PASS, BuildConfig.ACCESS_TOKEN))
     }
 
 }
