@@ -1,15 +1,14 @@
 package com.falabella.falabellatest.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.falabella.falabellatest.R
 import com.falabella.falabellatest.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -37,24 +36,6 @@ class LoginFragment : Fragment() {
             viewModel.validateLogin(etUsername.text.toString(), etPassword.text.toString())
         }
 
-        // This callback will only be called when MyFragment is at least Started.
-
-//        // This callback will only be called when MyFragment is at least Started.
-//        val callback: OnBackPressedCallback =
-//            object : OnBackPressedCallback(true /* enabled by default */) {
-//                override fun handleOnBackPressed() {
-//                    // Handle the back button event
-//                    Toast.makeText(context, "CERRAR", Toast.LENGTH_LONG).show()
-//                }
-//            }
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    Log.e("ALOOOO", "AAAAAAAASDEEFDFERFr")
-                }
-
-            })
-
         observeViewModel()
     }
 
@@ -62,12 +43,11 @@ class LoginFragment : Fragment() {
         viewModel.login.observe(viewLifecycleOwner, Observer { correctLogin ->
             correctLogin?.let {
                 if (it) {
-                    val action = LoginFragmentDirections
-                        .actionLoginFragmentToListFragment(etUsername.text.toString())
-                    view?.let { view -> Navigation.findNavController(view).navigate(action) }
+                    val bundle = bundleOf("usernameUuid" to etUsername.text.toString())
+                    findNavController().navigate(R.id.action_loginFragment_to_listFragment, bundle)
                 } else {
                     Toast.makeText(
-                        context, "Los datos de usuario son incorrectos",
+                        context, getString(R.string.login_error_msg),
                         Toast.LENGTH_LONG
                     ).show()
                 }

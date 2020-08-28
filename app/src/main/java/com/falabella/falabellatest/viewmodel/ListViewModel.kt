@@ -18,7 +18,11 @@ class ListViewModel : ViewModel() {
     val listLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
-    fun fetchFromRemote(){
+    fun refresh(){
+        fetchFromRemote()
+    }
+
+    private fun fetchFromRemote(){
         loading.value = true
         disposable.add(
             indicatorsApiService.getIndicators()

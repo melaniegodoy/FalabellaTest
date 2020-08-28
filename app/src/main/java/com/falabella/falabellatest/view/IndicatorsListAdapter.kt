@@ -5,11 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.falabella.falabellatest.R
-import com.falabella.falabellatest.databinding.ItemIndicatorBinding
 import com.falabella.falabellatest.model.IndicatorDetail
 import kotlinx.android.synthetic.main.item_indicator.view.*
 import java.util.*
@@ -37,8 +35,10 @@ class IndicatorsListAdapter(val indicatorsList : ArrayList<IndicatorDetail>) :
     }
 
     override fun onBindViewHolder(holder: IndicatorViewHolder, position: Int) {
+        val view = holder.view.tvName
         holder.view.tvName.text = filterListResult[position].nombre
-        holder.view.tvValue.text = filterListResult[position].valor.toString()
+        holder.view.tvValue.text = String.format(view.resources.getString(R.string.indicator_value),
+            filterListResult[position].valor.toString())
         holder.view.setOnClickListener {
             val action = ListFragmentDirections.actionListFragmentToDetailFragment()
             action.indicatorUuid = filterListResult[position]

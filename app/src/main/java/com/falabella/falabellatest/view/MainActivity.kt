@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.falabella.falabellatest.R
 import com.falabella.falabellatest.util.SharedPreferencesHelper
@@ -19,12 +20,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = MainViewModel(this)
-//        navController = Navigation.findNavController(this, R.id.fragment)
-//        NavigationUI.setupActionBarWithNavController(this, navController)
+        val appBarConfiguration = AppBarConfiguration
+            .Builder(R.id.loginFragment, R.id.listFragment)
+            .build()
+        navController = Navigation.findNavController(this, R.id.fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         viewModel.saveUserData()
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        return NavigationUI.navigateUp(navController, null)
-//    }
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, null)
+    }
 }
