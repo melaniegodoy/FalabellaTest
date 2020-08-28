@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FalabellaTest</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="logout_title">Cerrar sesion</string>
+    <string name="logout_confirmation_msg">¿Estas seguro de que deseas cerrar tu sesion?</string>
+    <string name="accept_button">Aceptar</string>
+    <string name="cancel_button">Cancelar</string>
+
+    <string name="hint_username">Usuario</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="login_button">Iniciar sesion</string>
+    <string name="login_error_msg">Los datos de usuario son incorrectos</string>
+    <string name="load_data_error_msg">Ha ocurrido un error, intenta de nuevo</string>
+
+    <string name="detail_actual_date">A la fecha %1$s</string>
+    <string name="detail_code">Código: %1$s</string>
+    <string name="detail_measurement_unity">Este indicador se cotiza respecto a %1$s,</string>
+    <string name="indicator_value">Valor actual: %1$s</string>
+    <string name="search_indicator_hint">Buscar indicador por código</string>
+
+</resources>
