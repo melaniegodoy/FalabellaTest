@@ -9,14 +9,19 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
 
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
     defaultConfig {
         applicationId "com.falabella.falabellatest"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "ACCESS_TOKEN", keystoreProperties["SECRET"]
     }
 
     buildTypes {
@@ -24,6 +29,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
 
     dataBinding.enabled = true
@@ -75,6 +81,8 @@ dependencies {
     implementation "androidx.preference:preference:$preferencesVersion"
 
     implementation "bouncycastle:bcprov-jdk16:136"
+
+    implementation 'com.android.support:multidex:1.0.3'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
