@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/indicators_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.falabella.falabellatest.view.LoginFragment"
+        android:label="Bienvenido" >
+        <action
+            android:id="@+id/action_loginFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.falabella.falabellatest.view.ListFragment"
+        android:label="Hola {usernameUuid}" >
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="usernameUuid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.falabella.falabellatest.view.DetailFragment"
+        android:label="Detalle indicador" >
+        <action
+            android:id="@+id/action_detailFragment_pop"
+            app:popUpTo="@id/detailFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="indicatorUuid"
+            app:nullable="true"
+            android:defaultValue="@null"
+            app:argType="com.falabella.falabellatest.model.IndicatorDetail" />
+    </fragment>
+</navigation>
